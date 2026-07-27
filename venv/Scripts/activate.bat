@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=D:\Scoala Vara\Hackathon-Superliga\venv"
+set "VIRTUAL_ENV=C:\Users\Rog PC\Desktop\Hackathon-Superliga\venv"
 
 if not defined PROMPT set PROMPT=$P$G
 
