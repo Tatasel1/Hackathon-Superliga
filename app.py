@@ -214,15 +214,15 @@ stat_col_buttons, stat_col_table = st.columns([1, 3])
 
 with stat_col_buttons:
     with st.container(key="stats_buttons"):
-        if st.button("București (Toate datele)"):
+        if st.button("Echipe din București oaspete (Toate datele)"):
             try:
-                query = "SELECT * FROM dbo.Romania_dest WHERE Home LIKE '%Bucuresti%'"
+                query = "SELECT * FROM dbo.Romania_dest WHERE Away LIKE '%Bucuresti%'"
                 st.session_state.current_df = run_query(query)
-                st.session_state.current_query_name = "Toate meciurile cu echipe din București jucând acasă"
+                st.session_state.current_query_name = "Toate meciurile cu echipe din București jucând în deplasare"
             except Exception as e:
                 st.error(f"Eroare SQL: {e}")
 
-        if st.button("București (Coloane selectate)"):
+        if st.button("Echipe din București gazde (Date, Home, Away, HG, AG, Res)"):
             try:
                 query = "SELECT Date, Home, Away, HG, AG, Res FROM dbo.Romania_dest WHERE Home LIKE '%Bucuresti%'"
                 st.session_state.current_df = run_query(query)
@@ -238,7 +238,7 @@ with stat_col_buttons:
             except Exception as e:
                 st.error(f"Eroare SQL: {e}")
 
-        if st.button("Finlanda (Cota medie < 2.3)"):
+        if st.button("Finlanda (Cota medie < 2.3 Drept Gazda)"):
             try:
                 query = "SELECT Home, AVG(AvgCH) as Cota_Medie_Acasa FROM dbo.Finland_dest GROUP BY Home HAVING AVG(AvgCH) < 2.3"
                 st.session_state.current_df = run_query(query)
@@ -246,7 +246,7 @@ with stat_col_buttons:
             except Exception as e:
                 st.error(f"Eroare SQL: {e}")
 
-        if st.button("România (>250 Goluri)"):
+        if st.button("România (>250 Goluri Marcate Drept Gazda)"):
             try:
                 query = "SELECT HOME, sum(HG) as Goluri_Marcate FROM dbo.Romania_dest GROUP BY Home HAVING SUM(HG) > 250"
                 st.session_state.current_df = run_query(query)
@@ -275,7 +275,7 @@ if st.session_state.current_df is not None and not st.session_state.current_df.e
     st.divider()
     st.subheader("Asistent AI SQLScout - Raport Profesionist")
     with st.container(border=True):
-        st.markdown("Generează o analiză sportivă profundă pe baza datelor afișate mai sus (maxim 30 de rânduri analizate).")
+        st.markdown("Generează o analiză sportivă pe baza datelor afișate mai sus (maxim 30 de rânduri analizate).")
 
         if st.button("Generează Analiza Datelor", type="primary"):
             limited_data = st.session_state.current_df.head(30)
