@@ -1,4 +1,4 @@
-# ⚽ Football Data Assistant
+# ⚽ SQLScout
 
 This project is a Streamlit-based web application that analyzes football data from different football leauges. It connects to a SQL Server database, executes complex queries, and uses the Gemini AI API to provide intelligent insights on the data.
 
